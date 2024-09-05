@@ -16,6 +16,7 @@ public class DesktopIcon : MonoBehaviour, IPointerClickHandler
     private Image icon_image;
     private TextMeshProUGUI icon_text;
     private Desktop desktop;
+    public Rect bounds;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class DesktopIcon : MonoBehaviour, IPointerClickHandler
         icon_text = GetComponentInChildren<TextMeshProUGUI>();
         icon_text.text = app_name;
         desktop = GetComponentInParent<Desktop>();
+        bounds.center = transform.position;
+        bounds.size = transform.localScale;
     }
 
     // Update is called once per frame
