@@ -29,15 +29,21 @@ public class Desktop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        ClearSelect();
+        Debug.Log("desktop clicked");
+        select_pos1 = Input.mousePosition;
+        select_rect.gameObject.SetActive(true);
+        UpdateSelectRect();
+        clicked = true;
+    }
+
+    public void ClearSelect()
+    {
         for (int i = 0; i < selected_icons.Count; i++)
         {
             selected_icons[i].Highlight(false);
         }
         selected_icons.Clear();
-        select_pos1 = Input.mousePosition;
-        select_rect.gameObject.SetActive(true);
-        UpdateSelectRect();
-        clicked = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
