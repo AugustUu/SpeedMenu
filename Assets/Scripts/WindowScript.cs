@@ -16,15 +16,6 @@ public class WindowScript : MonoBehaviour
 
     private bool IsFullScreen = false;
 
-    public enum DragedElement
-    {
-        None,
-        Window,
-        Size,
-    }
-
-    public DragedElement element;
-
 
     void Start()
     {
