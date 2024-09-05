@@ -72,14 +72,22 @@ public class WindowScript : MonoBehaviour
     }
     void DragWindow(PointerEventData eventData)
     {
-        
         if(!IsFullScreen){
-            this.transform.position = eventData.position;
+            this.transform.position = eventData.position + DragOffset;
         }
     }
 
+    private Vector2 DragOffset = Vector2.zero;
     void ClickWindow(PointerEventData eventData){
-        //fix eventData.pointerCurrentRaycast.gameObject.transform.parent.SetAsFirstSibling();
+        
+        
+        GameObject parent = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.gameObject;
+        
+        parent.transform.SetAsLastSibling();
+        
+        DragOffset = new Vector2(parent.transform.position.x,parent.transform.position.y) - eventData.position;
+        //Debug.Log(parent.name + " " +parent.transform.position + " " + eventData.position + " " + DragOffset);
+        
     }
 
 
