@@ -39,11 +39,21 @@ public class Desktop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void ClearSelect()
     {
-        for (int i = 0; i < selected_icons.Count; i++)
+        if (!(Input.GetKey("right ctrl") || Input.GetKey("left ctrl") || Input.GetKey("left shift") || Input.GetKey("right shift"))) // bad code sob
         {
-            selected_icons[i].Highlight(false);
+            foreach(DesktopIcon icon in selected_icons)
+            {
+                icon.Highlight(false);
+            }
+            selected_icons.Clear();
+            Debug.Log("cleared selection");
         }
-        selected_icons.Clear();
+    }
+
+    public void Select(DesktopIcon icon) // no deselect functionality cause never have to do that individually (dumb)
+    {
+        icon.Highlight(true);
+        selected_icons.Add(icon);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -60,12 +70,27 @@ public class Desktop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         select_rect.position = select_area.center;
         select_rect.sizeDelta = new Vector2(select_area.width, select_area.height);
 
-        for (int i = 0; i < icons.Count; i++)
+        foreach(DesktopIcon icon in icons)
         {
-            if (select_area.Overlaps(icons[i].bounds))
+            if(!selected_icons.Contains(icon))
             {
-                Debug.Log("buh");
+                RectTransform icon_rt = icon.GetComponent<RectTransform>();
+                if (select_area.Overlaps(GetWorldRect(icon_rt)))
+                {
+                    Select(icon);
+                }
             }
         }
+    }
+    
+    public Rect GetWorldRect(RectTransform rectTransform) // stolen code idfk what this does
+    {
+        var localRect = rectTransform.rect;
+
+        return new Rect
+        {
+            min = rectTransform.TransformPoint(localRect.min),
+            max = rectTransform.TransformPoint(localRect.max)
+        };
     }
 }

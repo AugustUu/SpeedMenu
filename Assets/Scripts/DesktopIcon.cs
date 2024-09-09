@@ -16,8 +16,7 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     private Image icon_image;
     private TextMeshProUGUI icon_text;
     private Desktop desktop;
-    public Rect bounds;
-    private Vector2 drag_offset = Vector2.zero;
+    public Vector2 drag_offset = Vector2.zero;
     public bool highlighted;
     
     // Start is called before the first frame update
@@ -27,8 +26,6 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
         icon_text = GetComponentInChildren<TextMeshProUGUI>();
         icon_text.text = app_name;
         desktop = GetComponentInParent<Desktop>();
-        bounds.center = transform.position;
-        bounds.size = transform.localScale;
     }
 
     // Update is called once per frame
@@ -39,10 +36,15 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        desktop.ClearSelect();
-        desktop.selected_icons.Add(this);
-        Highlight(true);
-        drag_offset = new Vector2(transform.position.x, transform.position.y) - eventData.position;
+        if (!highlighted)
+        {
+            desktop.ClearSelect();
+        }
+        desktop.Select(this); // stupiddddd
+        foreach (DesktopIcon icon in desktop.selected_icons)
+        {
+            icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y) - eventData.position; // move to desktop script (obviously why did i write this here)
+        }
     }
 
     public void Highlight(bool on)
@@ -63,7 +65,11 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position + drag_offset;
+        foreach (DesktopIcon icon in desktop.selected_icons)
+        {
+            icon.transform.position = eventData.position + icon.drag_offset; // for sure bad way to do this idc
+        }
+        
     }
 
     public void OnPointerClick(PointerEventData eventData)
