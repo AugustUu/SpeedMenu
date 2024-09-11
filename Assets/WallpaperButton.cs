@@ -9,7 +9,7 @@ public class WallpaperButton : MonoBehaviour
 
     public Sprite wallpaper;
 
-    private Image desktop_image;
+    private GameObject WallpaperPreview;
 
     private UseableButton button = null;
 
@@ -17,13 +17,13 @@ public class WallpaperButton : MonoBehaviour
     void Start()
     {
         button = this.GetComponent<UseableButton>();
-        desktop_image = GameObject.Find("Desktop").GetComponent<Image>();
+        WallpaperPreview = this.transform.parent.transform.parent.transform.parent.transform.parent.Find("WallpaperPreview").gameObject;
         button.OnPointerClickEvent.AddListener(OnPointerClick);
     }
 
     void OnPointerClick(PointerEventData eventData)
     {
-        desktop_image.sprite = wallpaper;    
+        WallpaperPreview.GetComponent<Image>().sprite = wallpaper;    
         Debug.Log("new wallpaper");
     }
 }
