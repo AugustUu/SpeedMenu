@@ -42,7 +42,9 @@ public class WindowScript : MonoBehaviour
     void Max(PointerEventData eventData)
     {
 
-        eventData.pointerCurrentRaycast.gameObject.transform.parent.SetAsLastSibling();
+        //eventData.pointerCurrentRaycast.gameObject.transform.parent.SetAsLastSibling();
+        //eventData.pointerCurrentRaycast.gameObject.transform.parent.SetSiblingIndex(2);
+
 
         IsFullScreen = !IsFullScreen;
 
@@ -74,7 +76,8 @@ public class WindowScript : MonoBehaviour
         
         GameObject parent = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.gameObject;
         
-        parent.transform.SetAsLastSibling();
+        parent.transform.SetSiblingIndex(1);
+        
         
         DragOffset = new Vector2(parent.transform.position.x,parent.transform.position.y) - eventData.position;
         //Debug.Log(parent.name + " " +parent.transform.position + " " + eventData.position + " " + DragOffset);
