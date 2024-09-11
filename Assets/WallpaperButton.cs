@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,10 +18,20 @@ public class WallpaperButton : MonoBehaviour
     void Start()
     {
         button = this.GetComponent<UseableButton>();
-        WallpaperPreview = this.transform.parent.transform.parent.transform.parent.transform.parent.Find("WallpaperPreview").gameObject;
+        WallpaperPreview = this.transform.parent.transform.parent.transform.parent.transform.parent.transform.parent.Find("WallpaperPreview").Find("wallpaper").gameObject;
         button.OnPointerClickEvent.AddListener(OnPointerClick);
+        button.OnPointerEnterEvent.AddListener(OnPointerEnter);
+        button.OnPointerExitEvent.AddListener(OnPointerExit);
     }
 
+    void OnPointerEnter(PointerEventData eventData){
+        WallpaperPreview.GetComponent<Image>().sprite = wallpaper;
+        this.GetComponent<TMP_Text>().color = Color.blue;
+    }
+
+    void OnPointerExit(PointerEventData eventData){
+        this.GetComponent<TMP_Text>().color = Color.black;
+    }
     void OnPointerClick(PointerEventData eventData)
     {
         WallpaperPreview.GetComponent<Image>().sprite = wallpaper;    
