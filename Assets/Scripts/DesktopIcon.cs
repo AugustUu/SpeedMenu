@@ -17,7 +17,9 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     private TextMeshProUGUI icon_text;
     private Desktop desktop;
     public Vector2 drag_offset = Vector2.zero;
-    public bool highlighted;
+    [HideInInspector] public bool highlighted;
+    public bool draggable = true;
+    public GameObject app;
     
     // Start is called before the first frame update
     void Start()
@@ -28,12 +30,6 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
         desktop = GetComponentInParent<Desktop>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!highlighted)
@@ -41,9 +37,12 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
             desktop.ClearSelect();
         }
         desktop.Select(this); // stupiddddd
-        foreach (DesktopIcon icon in desktop.selected_icons)
+        if(draggable)
         {
-            icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y) - eventData.position; // move to desktop script (obviously why did i write this here)
+            foreach (DesktopIcon icon in desktop.selected_icons)
+            {
+                icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y) - eventData.position; // move to desktop script (obviously why did i write this here)
+            }
         }
     }
 
@@ -65,18 +64,20 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
 
     public void OnDrag(PointerEventData eventData)
     {
-        foreach (DesktopIcon icon in desktop.selected_icons)
+        if(draggable)
         {
-            icon.transform.position = eventData.position + icon.drag_offset; // for sure bad way to do this idc
+            foreach (DesktopIcon icon in desktop.selected_icons)
+            {
+                icon.transform.position = eventData.position + icon.drag_offset; // for sure bad way to do this idc
+            }
         }
-        
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (Time.realtimeSinceStartup - time_last_clicked <= 0.25f)
         {
-            Debug.Log("bah");
+            Instantiate(app, GameObject.Find("Canvas").transform);
         }
         time_last_clicked = Time.realtimeSinceStartup;
     }
