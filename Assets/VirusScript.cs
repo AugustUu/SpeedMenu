@@ -23,8 +23,9 @@ public class VirusScript : MonoBehaviour
 
         foreach (var desktopIcon in desktop.icons)
         {
-            if (Vector3.Distance(desktopIcon.transform.position, test) < 15f)
+            if (Vector3.Distance(desktopIcon.transform.position, test) < 400f)
             {
+                Debug.Log( "bad position " + Vector3.Distance(desktopIcon.transform.position, test));
                 return random_pos();
             }
         }
@@ -44,11 +45,17 @@ public class VirusScript : MonoBehaviour
             }
             else
             {
-                DesktopIcon target = desktop.icons[Random.Range(0, desktop.icons.Count)];
-                //GameObject lazerClone = Instantiate(lazer, transform.parent.transform);
-                
-            }
+                if (Time.time > delay + 1f){
+                    DesktopIcon target = desktop.icons[Random.Range(0, desktop.icons.Count)];
 
+                    GameObject lazerClone = Instantiate(lazer, transform.parent.transform);
+                    
+                    lazerClone.transform.rotation = Quaternion.Euler(0, 0,Mathf.Rad2Deg * Mathf.Atan2(target.transform.position.y - transform.position.y,target.transform.position.x - transform.position.x));
+                    
+                    lazerClone.transform.position = transform.position;
+                    delay = Time.time;
+                }
+            }
         }
         else
         {
