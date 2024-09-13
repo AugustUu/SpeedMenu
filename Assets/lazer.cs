@@ -7,9 +7,12 @@ public class lazer : MonoBehaviour
 {
 
     private float start_time;
+    public Desktop desktop;
+
 
     void Start()
     {
+        
         start_time = Time.time; 
     }
 
@@ -20,6 +23,14 @@ public class lazer : MonoBehaviour
         if ( Time.time > start_time+5 )
         {
             Destroy(gameObject);
+        }
+
+        foreach (var icon in desktop.icons)
+        {
+            if (Vector3.Distance(icon.transform.position, transform.position) < 0.1f)
+            {
+                Debug.Log(icon.name + " dead");
+            }
         }
         
     }

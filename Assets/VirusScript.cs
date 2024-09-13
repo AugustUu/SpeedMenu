@@ -49,7 +49,7 @@ public class VirusScript : MonoBehaviour
                     DesktopIcon target = desktop.icons[Random.Range(0, desktop.icons.Count)];
 
                     GameObject lazerClone = Instantiate(lazer, transform.parent.transform);
-                    
+                    lazerClone.GetComponent<lazer>().desktop = desktop;
                     lazerClone.transform.rotation = Quaternion.Euler(0, 0,Mathf.Rad2Deg * Mathf.Atan2(target.transform.position.y - transform.position.y,target.transform.position.x - transform.position.x));
                     
                     lazerClone.transform.position = transform.position;
