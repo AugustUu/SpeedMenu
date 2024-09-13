@@ -5,8 +5,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
+using Slider = UnityEngine.UI.Slider;
 
 public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IDragHandler
 {
@@ -21,6 +21,8 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     public bool draggable = true;
     public GameObject app;
     public bool is_bullet = false;
+    
+    public float health = 1;
     
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,12 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
             icon_image = GetComponent<Image>();
             desktop = transform.parent.GetChild(0).GetComponent<Desktop>();
         }
+    }
+
+    public void dammage(float damage)
+    {
+        health -= damage;
+        this.GetComponentInChildren<Slider>().value = health;
     }
     public void OnPointerDown(PointerEventData eventData)
     {

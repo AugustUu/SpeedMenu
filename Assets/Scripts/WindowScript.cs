@@ -45,7 +45,7 @@ public class WindowScript : MonoBehaviour
         //eventData.pointerCurrentRaycast.gameObject.transform.parent.SetAsLastSibling();
         //eventData.pointerCurrentRaycast.gameObject.transform.parent.SetSiblingIndex(2);
 
-
+        /*
         IsFullScreen = !IsFullScreen;
 
         if (IsFullScreen)
@@ -59,7 +59,7 @@ public class WindowScript : MonoBehaviour
         {
             WindowRectTransform.sizeDelta = OgSize;
             this.transform.position = OgPosition;
-        }
+        }*/
 
 
     }

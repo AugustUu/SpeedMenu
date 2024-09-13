@@ -33,6 +33,7 @@ public class VirusScript : MonoBehaviour
     }
     
     private float delay = 0;
+    private float delay_shooting = 0;
     void Update()
     {
         if (targetPosition == this.transform.position)
@@ -45,15 +46,15 @@ public class VirusScript : MonoBehaviour
             }
             else
             {
-                if (Time.time > delay + 1f){
+                if (Time.time > delay_shooting + 1f){
                     DesktopIcon target = desktop.icons[Random.Range(0, desktop.icons.Count)];
 
                     GameObject lazerClone = Instantiate(lazer, transform.parent.transform);
                     lazerClone.GetComponent<lazer>().desktop = desktop;
                     lazerClone.transform.rotation = Quaternion.Euler(0, 0,Mathf.Rad2Deg * Mathf.Atan2(target.transform.position.y - transform.position.y,target.transform.position.x - transform.position.x));
-                    
                     lazerClone.transform.position = transform.position;
-                    delay = Time.time;
+                    
+                    delay_shooting = Time.time;
                 }
             }
         }
