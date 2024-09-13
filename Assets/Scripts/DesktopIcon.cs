@@ -20,14 +20,18 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     [HideInInspector] public bool highlighted;
     public bool draggable = true;
     public GameObject app;
+    public bool is_bullet = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        icon_image = GetComponentInChildren<Image>();
-        icon_text = GetComponentInChildren<TextMeshProUGUI>();
-        icon_text.text = app_name;
-        desktop = GetComponentInParent<Desktop>();
+        if (!is_bullet)
+        {
+            icon_image = GetComponentInChildren<Image>();
+            icon_text = GetComponentInChildren<TextMeshProUGUI>();
+            icon_text.text = app_name;
+            desktop = GetComponentInParent<Desktop>();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -51,13 +55,19 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
         if (on)
         {
             icon_image.color = new Color(0.25f, 0.35f, 0.80f);
-            icon_text.text = "<mark=#3958D460>" + app_name;
+            if (!is_bullet)
+            {
+                icon_text.text = "<mark=#3958D460>" + app_name;
+            }
             highlighted = true;
         }
         else
         {
             icon_image.color = new Color(1f, 1f, 1f);
-            icon_text.text = app_name;
+            if (!is_bullet)
+            {
+                icon_text.text = app_name;
+            }
             highlighted = false;
         }
     }
@@ -77,7 +87,10 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     {
         if (Time.realtimeSinceStartup - time_last_clicked <= 0.25f)
         {
-            Instantiate(app, GameObject.Find("Canvas").transform);
+            if (!is_bullet)
+            {
+                Instantiate(app, GameObject.Find("Canvas").transform);
+            }
         }
         time_last_clicked = Time.realtimeSinceStartup;
     }
