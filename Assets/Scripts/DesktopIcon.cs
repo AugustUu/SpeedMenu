@@ -32,8 +32,12 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
             icon_text.text = app_name;
             desktop = GetComponentInParent<Desktop>();
         }
+        else
+        {
+            icon_image = GetComponent<Image>();
+            desktop = transform.parent.GetChild(0).GetComponent<Desktop>();
+        }
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!highlighted)
