@@ -76,7 +76,7 @@ public class WindowScript : MonoBehaviour
         
         GameObject parent = eventData.pointerCurrentRaycast.gameObject.transform.parent.transform.parent.gameObject;
         
-        parent.transform.SetSiblingIndex(1);
+        parent.transform.SetSiblingIndex(transform.parent.childCount - 2);
         
         
         DragOffset = new Vector2(parent.transform.position.x,parent.transform.position.y) - eventData.position;

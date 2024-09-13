@@ -145,8 +145,8 @@ MonoBehaviour:
   m_text: 'Error 0x80040203: Invalid system disk. Please insert a valid operating
     system disk.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 081b0a0e7f609984ea72797b84a5298a, type: 2}
+  m_sharedMaterial: {fileID: 4551195803126156624, guid: 081b0a0e7f609984ea72797b84a5298a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.4
+  m_fontSize: 24.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 350498858631487070, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 350498858631487071, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_SizeDelta.x
       value: -36.422
@@ -253,27 +257,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -893.0858
+      value: 310.3238
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -382.1924
+      value: 187.2354
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -305,11 +309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 427.6614
+      value: -4.8381
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.7889099
+      value: 1.3823
       objectReference: {fileID: 0}
     - target: {fileID: 350498858727004949, guid: 898e907d4aa5481418fff20713568bdf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
