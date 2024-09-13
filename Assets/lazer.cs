@@ -27,7 +27,7 @@ public class lazer : MonoBehaviour
 
         foreach (var icon in desktop.icons)
         {
-            if (Vector3.Distance(icon.transform.position, transform.position) < 10f)
+            if (Vector3.Distance(icon.transform.position, transform.position) < 60f)
             {
                 icon.GetComponent<DesktopIcon>().dammage(0.1f);
                 Debug.Log(icon.name + " dead");
