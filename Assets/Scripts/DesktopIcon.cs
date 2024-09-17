@@ -51,6 +51,7 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     {
         health -= damage;
         this.GetComponentInChildren<Slider>().value = health;
+        
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -63,7 +64,15 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
         {
             foreach (DesktopIcon icon in desktop.selected_icons)
             {
-                icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y + 32.5f) - eventData.position; // move to desktop script (obviously why did i write this here)
+                if (icon.is_bullet)
+                {
+                    icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y ) - eventData.position; 
+                }
+                else
+                {
+                    icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y + 32.5f) - eventData.position; // move to desktop script (obviously why did i write this here)
+                }
+               
             }
         }
     }
@@ -123,7 +132,15 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
         foreach (DesktopIcon icon in desktop.selected_icons)
         {
             if(icon.draggable){
-                icon.transform.position = eventData.position + new Vector2(icon.drag_offset.x, icon.drag_offset.y - 32.5f);
+                if (is_bullet)
+                {
+                    icon.transform.position = eventData.position + new Vector2(icon.drag_offset.x, icon.drag_offset.y);
+                }
+                else
+                {
+                    icon.transform.position = eventData.position + new Vector2(icon.drag_offset.x, icon.drag_offset.y - 32.5f);
+                }
+                
                 icon.icon_ghost.SetActive(false);
                 icon.dragging = false;
             }
