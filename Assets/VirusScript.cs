@@ -9,6 +9,7 @@ public class VirusScript : MonoBehaviour
     Desktop desktop;
 
     public GameObject lazer;
+    public GameObject bouncy_laser;
 
     void Start()
     {
@@ -34,6 +35,8 @@ public class VirusScript : MonoBehaviour
     
     private float delay = 0;
     private float delay_shooting = 0;
+
+    private int mode = 0;
     void Update()
     {
         if (targetPosition == this.transform.position)
@@ -42,6 +45,7 @@ public class VirusScript : MonoBehaviour
             if (Time.time > delay + 4f)
             {
                 targetPosition = random_pos();
+                mode = Random.Range(0, 2);
 
             }
             else
@@ -52,7 +56,14 @@ public class VirusScript : MonoBehaviour
                         target = desktop.icons[Random.Range(0, desktop.icons.Count)];
                     }
 
-                    GameObject lazerClone = Instantiate(lazer, transform.parent.transform);
+                    GameObject lazerClone;
+                    if(mode == 0){
+                         lazerClone = Instantiate(lazer, transform.parent.transform);
+                    }
+                    else
+                    {
+                        lazerClone = Instantiate(bouncy_laser, transform.parent.transform);
+                    }
                     lazerClone.GetComponent<lazer>().desktop = desktop;
                     lazerClone.transform.rotation = Quaternion.Euler(0, 0,Mathf.Rad2Deg * Mathf.Atan2(target.transform.position.y - transform.position.y,target.transform.position.x - transform.position.x));
                     lazerClone.transform.position = transform.position;
