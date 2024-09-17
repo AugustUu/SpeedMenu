@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 4062726771375423070}
   - component: {fileID: 5019743638202869281}
   - component: {fileID: 8641370260086275866}
+  - component: {fileID: 7331854309960053292}
   m_Layer: 5
   m_Name: Clock
   m_TagString: Untagged
@@ -417,3 +418,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7331854309960053292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021403909307717063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1701ea0cc34203848b461e6e5787a709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popup: {fileID: 977054995912502880, guid: 5608ace620046b6499de0d5b60f1de94, type: 3}
+  desktop: {fileID: 0}
