@@ -14,6 +14,7 @@ public class ClockScript : MonoBehaviour
 
     public GameObject popup;
     public GameObject desktop;
+    public GameObject winScreen;
 
 
     void Start()
@@ -22,7 +23,7 @@ public class ClockScript : MonoBehaviour
         InvokeRepeating("tickClock",0f,1f);
     }
 
-    void win(){
+    void Win(){
        Desktop desktop_script = desktop.GetComponent<Desktop>();
 
         float avarge = 0;
@@ -33,11 +34,12 @@ public class ClockScript : MonoBehaviour
        avarge /= desktop_script.icons.Count;
 
        Debug.Log("score " + avarge);
+       winScreen.SetActive(true);
     }
 
     void tickClock(){
         if(min == 0 && seconds == 0){
-            win();
+            Win();
             CancelInvoke("tickClock");
         }
 

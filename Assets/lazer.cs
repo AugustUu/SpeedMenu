@@ -22,7 +22,15 @@ public class lazer : MonoBehaviour
     
     void Update()
     {
-        transform.position += transform.right * Time.deltaTime * 250;
+        if (draggable)
+        {
+            transform.position += transform.right * Time.deltaTime * 150;
+        }
+        else
+        {
+            transform.position += transform.right * Time.deltaTime * 250;
+        }
+        
         if(!draggable){
             if(Mathf.Abs(transform.localPosition.x * 2) - 80 > canvas.sizeDelta.x || Mathf.Abs(transform.localPosition.y * 2) - 80 > canvas.sizeDelta.y){
                 Destroy(gameObject);
