@@ -51,7 +51,15 @@ public class ClockScript : MonoBehaviour
         }else{
             seconds -= 1;
         }
-        text.text = "" + min + ":" + seconds;
+
+        if (seconds < 10)
+        {
+            text.text = "" + min + ":0" + seconds;
+        }
+        else
+        {
+            text.text = "" + min + ":" + seconds;
+        }
 
         if(Random.Range(0,3 + min) == 0){
             Vector3 test = new Vector3(Random.Range(200, Screen.width -200), Random.Range(200, Screen.height -200), 0);
