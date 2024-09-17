@@ -9,13 +9,13 @@ using UnityEngine;
 public class ClockScript : MonoBehaviour
 {
     TMP_Text text;
-    int min = 0;
-    int seconds = 10;
+    int min = 5;
+    int seconds = 0;
 
     public GameObject popup;
     public GameObject desktop;
     public GameObject winScreen;
-
+    public GameObject Virus;
 
     void Start()
     {
@@ -35,6 +35,8 @@ public class ClockScript : MonoBehaviour
 
        Debug.Log("score " + avarge);
        winScreen.SetActive(true);
+       winScreen.GetComponentInChildren<TMP_Text>().text = "Score: " + Mathf.Round(avarge * 100) + "%";
+       Destroy(Virus);
     }
 
     void tickClock(){
