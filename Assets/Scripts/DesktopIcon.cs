@@ -24,7 +24,6 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     public GameObject app;
     public bool is_bullet = false;
     public bool is_trash = false;
-    public Trash trash;
     
     public float health = 1;
     
@@ -39,11 +38,11 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
             icon_text = GetComponentInChildren<TextMeshProUGUI>();
             icon_text.text = app_name;
             desktop = GetComponentInParent<Desktop>();
-            trash = GameObject.Find("Trash").GetComponent<Trash>();
         }
         else
         {
             icon_image = GetComponent<Image>();
+            icon_ghost = transform.GetChild(0).gameObject;
             desktop = transform.parent.GetChild(0).GetComponent<Desktop>();
         }
     }
@@ -93,6 +92,10 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
 
     public void OnDrag(PointerEventData eventData)
     {
+        UpdateGhosts(eventData);
+    }
+
+    public void UpdateGhosts(PointerEventData eventData){
         if(draggable)
         {
             foreach (DesktopIcon icon in desktop.selected_icons)
@@ -119,7 +122,6 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     public void OnPointerUp(PointerEventData eventData){
         foreach (DesktopIcon icon in desktop.selected_icons)
         {
-            trash.RunTrash();
             icon.transform.position = eventData.position + new Vector2(icon.drag_offset.x, icon.drag_offset.y - 32.5f);
             icon_ghost.SetActive(false);
             icon.dragging = false;

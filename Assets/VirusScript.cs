@@ -23,7 +23,7 @@ public class VirusScript : MonoBehaviour
 
         foreach (var desktopIcon in desktop.icons)
         {
-            if (Vector3.Distance(desktopIcon.transform.position, test) < 400f)
+            if (Vector3.Distance(desktopIcon.transform.position, test) < 400f || Mathf.Abs(test.x - Screen.width) < 80 || Mathf.Abs(test.y - Screen.height) < 80)
             {
                 Debug.Log( "bad position " + Vector3.Distance(desktopIcon.transform.position, test));
                 return random_pos();
