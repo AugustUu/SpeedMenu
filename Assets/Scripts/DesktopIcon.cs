@@ -8,12 +8,13 @@ using UnityEngine.EventSystems;
 using Image = UnityEngine.UI.Image;
 using Slider = UnityEngine.UI.Slider;
 
-public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IDragHandler
+public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IDragHandler, IPointerUpHandler
 {
     public String app_name;
     
     private float time_last_clicked = 0;
     private Image icon_image;
+    private GameObject icon_ghost;
     private TextMeshProUGUI icon_text;
     private Desktop desktop;
     public Vector2 drag_offset = Vector2.zero;
@@ -29,7 +30,9 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     {
         if (!is_bullet)
         {
-            icon_image = GetComponentInChildren<Image>();
+            icon_image = transform.GetChild(1).GetComponent<Image>();
+            icon_ghost = transform.GetChild(3).GameObject();
+            icon_ghost.GetComponent<Image>().sprite = icon_image.sprite;
             icon_text = GetComponentInChildren<TextMeshProUGUI>();
             icon_text.text = app_name;
             desktop = GetComponentInParent<Desktop>();
@@ -57,7 +60,7 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
         {
             foreach (DesktopIcon icon in desktop.selected_icons)
             {
-                icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y) - eventData.position; // move to desktop script (obviously why did i write this here)
+                icon.drag_offset = new Vector2(icon.transform.position.x, icon.transform.position.y + 32.5f) - eventData.position; // move to desktop script (obviously why did i write this here)
             }
         }
     }
@@ -90,7 +93,8 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
         {
             foreach (DesktopIcon icon in desktop.selected_icons)
             {
-                icon.transform.position = eventData.position + icon.drag_offset; // for sure bad way to do this idc
+                icon.icon_ghost.SetActive(true);
+                icon.icon_ghost.transform.position = eventData.position + icon.drag_offset; // for sure bad way to do this idc
             }
         }
     }
@@ -105,5 +109,13 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
             }
         }
         time_last_clicked = Time.realtimeSinceStartup;
+    }
+
+    public void OnPointerUp(PointerEventData eventData){
+        foreach (DesktopIcon icon in desktop.selected_icons)
+        {
+            icon.transform.position = eventData.position + new Vector2(icon.drag_offset.x, icon.drag_offset.y - 32.5f);
+            icon_ghost.SetActive(false);
+        }
     }
 }
