@@ -216,8 +216,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 659435270}
-  - {fileID: 1143168736}
   - {fileID: 1596696266}
+  - {fileID: 1143168736}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -420,7 +420,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 457463571}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -645,9 +645,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6512478668191082490, guid: 30a363e74214648a0941e707c667b0e3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bb7073e9603ac48e6a831d51a9e452fc, type: 3}
+    - target: {fileID: 6512478669842228821, guid: 30a363e74214648a0941e707c667b0e3, type: 3}
+      propertyPath: app_name
+      value: trash
+      objectReference: {fileID: 0}
     - target: {fileID: 6512478669842228821, guid: 30a363e74214648a0941e707c667b0e3, type: 3}
       propertyPath: is_trash
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512478669842228821, guid: 30a363e74214648a0941e707c667b0e3, type: 3}
+      propertyPath: draggable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6512478669842228823, guid: 30a363e74214648a0941e707c667b0e3, type: 3}
       propertyPath: m_Name
@@ -700,23 +712,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2020647970164947461, guid: 30a363e74214648a0941e707c667b0e3, type: 3}
   m_PrefabInstance: {fileID: 1612298794}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1850338534 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6512478669842228823, guid: 30a363e74214648a0941e707c667b0e3, type: 3}
-  m_PrefabInstance: {fileID: 1612298794}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1850338537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850338534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3175f925b090d46448b95267acc452c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6563449033219111374
 PrefabInstance:
   m_ObjectHideFlags: 0

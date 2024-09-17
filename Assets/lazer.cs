@@ -50,7 +50,9 @@ public class lazer : MonoBehaviour
                 if(draggable){
                     desktop.selected_icons.Remove(gameObject.GetComponent<DesktopIcon>());
                 }
-                Destroy(gameObject);
+                if(!icon.GetComponent<DesktopIcon>().is_trash || draggable){
+                    Destroy(gameObject);
+                }
             }
             else
             {

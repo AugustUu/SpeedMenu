@@ -96,9 +96,9 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     }
 
     public void UpdateGhosts(PointerEventData eventData){
-        if(draggable)
+        foreach (DesktopIcon icon in desktop.selected_icons)
         {
-            foreach (DesktopIcon icon in desktop.selected_icons)
+            if(icon.draggable)
             {
                 icon.icon_ghost.SetActive(true);
                 icon.icon_ghost.transform.position = eventData.position + icon.drag_offset; // for sure bad way to do this idc
@@ -122,9 +122,11 @@ public class DesktopIcon : MonoBehaviour, IPointerDownHandler, IPointerClickHand
     public void OnPointerUp(PointerEventData eventData){
         foreach (DesktopIcon icon in desktop.selected_icons)
         {
-            icon.transform.position = eventData.position + new Vector2(icon.drag_offset.x, icon.drag_offset.y - 32.5f);
-            icon_ghost.SetActive(false);
-            icon.dragging = false;
+            if(icon.draggable){
+                icon.transform.position = eventData.position + new Vector2(icon.drag_offset.x, icon.drag_offset.y - 32.5f);
+                icon.icon_ghost.SetActive(false);
+                icon.dragging = false;
+            }
         }
     }
 }

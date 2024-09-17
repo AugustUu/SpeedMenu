@@ -48,6 +48,9 @@ public class VirusScript : MonoBehaviour
             {
                 if (Time.time > delay_shooting + 1f){
                     DesktopIcon target = desktop.icons[Random.Range(0, desktop.icons.Count)];
+                    while(target.is_trash){
+                        target = desktop.icons[Random.Range(0, desktop.icons.Count)];
+                    }
 
                     GameObject lazerClone = Instantiate(lazer, transform.parent.transform);
                     lazerClone.GetComponent<lazer>().desktop = desktop;
