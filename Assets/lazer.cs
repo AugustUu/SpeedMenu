@@ -52,7 +52,7 @@ public class lazer : MonoBehaviour
             if (Vector3.Distance(icon.transform.position, transform.position) < 60f)
             {
                 if(!icon.GetComponent<DesktopIcon>().is_trash){
-                    icon.GetComponent<DesktopIcon>().dammage(0.1f);
+                    icon.GetComponent<DesktopIcon>().dammage(0.15f);
                     // Debug.Log(icon.name + " dead");
                 }
                 if(draggable){
